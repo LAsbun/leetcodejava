@@ -1,0 +1,100 @@
+//Given a binary tree, return the postorder traversal of its nodes' values. 
+//
+// Example: 
+//
+// 
+//Input: [1,null,2,3]
+//   1
+//    \
+//     2
+//    /
+//   3
+//
+//Output: [3,2,1]
+// 
+//
+// Follow up: Recursive solution is trivial, could you do it iteratively? 
+// Related Topics 栈 树
+
+
+package leetcode.editor.cn;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class BinaryTreePostorderTraversal {
+    public static void main(String[] args) {
+
+        List<Integer> integers = new BinaryTreePostorderTraversal().new Solution().postorderTraversal(buildNode());
+        integers.forEach(System.out::println);
+    }
+
+
+    public static TreeNode buildNode() {
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.left = new TreeNode(2);
+        treeNode.left.left = new TreeNode(4);
+        treeNode.right = new TreeNode(6);
+        treeNode.left.right = new TreeNode(7);
+        treeNode.left.right.left = new TreeNode(9);
+
+        return treeNode;
+    }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+
+
+    class Solution {
+        public List<Integer> postorderTraversal(TreeNode root) {
+
+            List<Integer> results = new ArrayList<>();
+
+            Stack<TreeNode> stack = new Stack<>();
+
+
+            if (root != null) {
+
+                stack.push(root);
+            }
+
+            while (!stack.isEmpty()) {
+
+                TreeNode pop = stack.pop();
+                if(pop != null){
+                    stack.push(pop);
+                    stack.push(null);
+                    if(pop.right != null){
+                        stack.push(pop.right);
+                    }
+
+                    if(pop.left != null){
+                        stack.push(pop.left);
+                    }
+
+                }
+                else {
+                    TreeNode cur = stack.pop();
+                    results.add(cur.val);
+                }
+
+            }
+
+            return results;
+
+        }
+    }
+//leetcode submit region end(Prohibit modification and deletion)
+
+}
