@@ -34,10 +34,12 @@ public class BinaryTreePostorderTraversal {
     public static TreeNode buildNode() {
         TreeNode treeNode = new TreeNode(1);
         treeNode.left = new TreeNode(2);
-        treeNode.left.left = new TreeNode(4);
+        treeNode.left.left = new TreeNode(3);
+        treeNode.left.left.left = new TreeNode(4);
+        treeNode.left.left.right = new TreeNode(5);
         treeNode.right = new TreeNode(6);
-        treeNode.left.right = new TreeNode(7);
-        treeNode.left.right.left = new TreeNode(9);
+        treeNode.right.right = new TreeNode(7);
+        treeNode.right.right.left = new TreeNode(8);
 
         return treeNode;
     }
