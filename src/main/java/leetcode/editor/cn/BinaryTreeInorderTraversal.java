@@ -45,49 +45,11 @@ class TreeNode {
     }
 }
 
-/**
- * 中序遍历: 先遍历左节点，然后再主节点，然后再访问右节点。
- * 前序遍历：先主节点，再左节点，再右节点
- * 后续遍历：先左节点，再右节点，再主节点
- */
-
-class Solution {
-
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> results = new ArrayList<>();
-
-        Stack<TreeNode> stack = new Stack<>();
-        if (root != null)
-            stack.push(root);
-
-        while (!stack.isEmpty()) {
-            TreeNode pop = stack.pop();
-            if (pop != null) {
-                if (pop.right != null) {
-                    stack.push(pop.right);
-                }
-                stack.push(pop);
-                stack.push(null);
-                if (pop.left != null) {
-                    stack.push(pop.left);
-                }
-
-            } else {
-                TreeNode cur = stack.pop();
-                results.add(cur.val);
-            }
-        }
-
-        return results;
-    }
-}
-//leetcode submit region end(Prohibit modification and deletion)
-
 
 public class BinaryTreeInorderTraversal {
     public static void main(String[] args) {
 
-        List<Integer> integers = new Solution().inorderTraversal(buildNode());
+        List<Integer> integers = new BinaryTreeInorderTraversal().new Solution().inorderTraversal(buildNode());
         integers.forEach(System.out::println);
     }
 
@@ -104,4 +66,42 @@ public class BinaryTreeInorderTraversal {
 
         return treeNode;
     }
+
+    /**
+     * 中序遍历: 先遍历左节点，然后再主节点，然后再访问右节点。
+     * 前序遍历：先主节点，再左节点，再右节点
+     * 后续遍历：先左节点，再右节点，再主节点
+     */
+
+    class Solution {
+
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> results = new ArrayList<>();
+
+            Stack<TreeNode> stack = new Stack<>();
+            if (root != null)
+                stack.push(root);
+
+            while (!stack.isEmpty()) {
+                TreeNode pop = stack.pop();
+                if (pop != null) {
+                    if (pop.right != null) {
+                        stack.push(pop.right);
+                    }
+                    stack.push(pop);
+                    stack.push(null);
+                    if (pop.left != null) {
+                        stack.push(pop.left);
+                    }
+
+                } else {
+                    TreeNode cur = stack.pop();
+                    results.add(cur.val);
+                }
+            }
+
+            return results;
+        }
+    }
+//leetcode submit region end(Prohibit modification and deletion)
 }
