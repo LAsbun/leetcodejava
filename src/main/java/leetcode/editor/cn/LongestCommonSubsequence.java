@@ -96,7 +96,6 @@ public class LongestCommonSubsequence {
 
             return dp[text1.length()][text2.length()];
 
-
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
