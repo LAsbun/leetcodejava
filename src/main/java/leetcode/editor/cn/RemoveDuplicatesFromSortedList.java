@@ -61,6 +61,27 @@ public class RemoveDuplicatesFromSortedList {
         return head;
     }
 
+    public static ListNode buildCycleListNodeFromArgs(Integer[] args, int pos) {
+
+        ListNode head = new ListNode(args[0]);
+
+        ListNode tmp = head;
+
+        for (int i = 1; i < args.length; i++) {
+            ListNode listNode = new ListNode(args[i]);
+            tmp.next = listNode;
+            tmp = listNode;
+        }
+        if (pos < 0) return head;
+        ListNode tmp2 = head;
+        for (int i = 0; i < pos; i++) {
+            tmp2 = tmp2.next;
+        }
+        tmp.next = tmp2;
+
+        return head;
+    }
+
     //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
