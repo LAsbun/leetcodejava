@@ -35,7 +35,7 @@ import java.util.Stack;
  */
 
 
-class TreeNode {
+class TreeNode{
     int val;
     TreeNode left;
     TreeNode right;
@@ -44,6 +44,25 @@ class TreeNode {
         val = x;
     }
 }
+
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+
+    public Node() {
+    }
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right) {
+        val = _val;
+        left = _left;
+        right = _right;
+    }
+};
 
 
 public class BinaryTreeInorderTraversal {

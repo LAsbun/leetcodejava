@@ -53,6 +53,7 @@ public class BalancedBinaryTree {
         boolean balanced = solution.isBalanced(buildTreeNodeFromArgs(new Integer[]{1, 2, 2, 3, 3, null, null, 4, 4}));
         System.out.println(balanced);
 //        testGenerateNode();
+        // TODO 看一下
     }
 
 
@@ -89,6 +90,57 @@ public class BalancedBinaryTree {
                 Integer arg = args[index];
                 if (null != arg) {
                     TreeNode node = new TreeNode(arg);
+                    if (left) {
+                        poll.left = node;
+                    } else {
+                        poll.right = node;
+                    }
+                    queue.add(node);
+                }
+                left = !left;
+
+
+            }
+        }
+
+
+        return root;
+
+    }
+
+    public static Node buildNodeFromArgs(Integer[] args) {
+        boolean left = true;
+
+        Node root = new Node(args[0]);
+
+        Queue<Node> queue = new ArrayDeque();
+        queue.add(root);
+
+        int index = 0;
+        while (index < args.length && !queue.isEmpty()) {
+            index++;
+            Node poll = queue.poll();
+            if (index < args.length) {
+                Integer arg = args[index];
+                if (null != arg) {
+                    Node node = new Node(arg);
+                    if (left) {
+                        poll.left = node;
+                    } else {
+                        poll.right = node;
+                    }
+                    queue.add(node);
+                }
+                left = !left;
+
+
+            }
+
+            index++;
+            if (index < args.length) {
+                Integer arg = args[index];
+                if (null != arg) {
+                    Node node = new Node(arg);
                     if (left) {
                         poll.left = node;
                     } else {
