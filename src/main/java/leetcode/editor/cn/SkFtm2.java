@@ -62,26 +62,21 @@ public class SkFtm2 {
             if (nums.length < 2) return nums[0];
 
             int start = 0, end = nums.length - 1;
-            int ans = nums[0];
 
-            while (start <= end) {
-                if (start == end) {
-                    ans = nums[start];
-                    break;
-                }
-                int mid = (start + end) / 2;
-
-                if(mid+1 <= end && nums[mid+1] == nums[mid] && )
-
-
-                if ((mid - start + 1) % 2 == 0) {
+            while (start < end) {
+                int mid = (end - start) / 2 + start;
+                // 因为数组是从下标0开始，
+                // 如果mid是奇数 且mid == mid-1  即左边是偶数
+                // 如果mid是偶数 且mid == mid+1 即mid+1左边是偶数
+                if (nums[mid] == nums[mid ^ 1]) {
                     start = mid + 1;
                 } else {
-                    end = mid - 1;
+                    end = mid;
                 }
             }
 
-            return ans;
+            return nums[start];
+
 
         }
     }
