@@ -33,7 +33,46 @@ public class LongestPalindromicSubstring {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+
         /**
+         * dp[i][j]定义为i~j的回文串长度  j>=i
+         * 子串
+         * i!=j  dp[i][j] = 0
+         * i== j dp[i][j] = j-i>1?j-i+1:dp[i+1][j-1]+2;
+         *
+         * @param s
+         * @return
+         */
+        public String longestPalindrome(String s) {
+
+            int[][] dp = new int[s.length() + 1][s.length() + 1];
+
+            int ans = 0;
+            int start = -1;
+
+            for (int i = s.length() - 1; i >= 0; i--) {
+                for (int j = i; j < s.length(); j++) {
+                    if (s.charAt(i) == s.charAt(j)) {
+                        if (j - i > 1) {
+                            if (dp[i + 1][j - 1] != 0) {
+                                dp[i][j] = dp[i + 1][j - 1] + 2;
+                            }
+                        } else {
+                            dp[i][j] = j - i + 1;
+                        }
+                        if (ans < dp[i][j]) {
+                            ans = dp[i][j];
+                            start = i;
+                        }
+                    }
+                }
+            }
+            return s.substring(start, start + ans);
+        }
+
+        /**
+         * 这个思路有点复杂，且只能找到最长的，无法统计全部的回文子串的数目
          * 思路1：枚举所有i,j 找出最大的哪一种。 时间复杂度O(n^3)
          * 思路2：该字符串的反序的字符串，与该串的最大连续子串就是最长的回文子串
          * 我们先找最长公共子串长度maxLen, 第一次出现的长度即为
@@ -44,7 +83,7 @@ public class LongestPalindromicSubstring {
          * @param s
          * @return
          */
-        public String longestPalindrome(String s) {
+        public String longestPalindrome2(String s) {
 
 
             if (null == s || s.length() == 1) {
